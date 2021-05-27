@@ -5,9 +5,15 @@ public class Room implements IRoom{
     public Double price;
     public RoomType enumeration;
 
+    public Room(String roomNumber, Double price, RoomType enumeration) {
+        this.roomNumber = roomNumber;
+        this.price = price;
+        this.enumeration = enumeration;
+    }
+
     @Override
     public String getRoomNumber() {
-        return null;
+        return roomNumber;
     }
 
     @Override
@@ -17,7 +23,7 @@ public class Room implements IRoom{
 
     @Override
     public RoomType getRoomType() {
-        return null;
+        return enumeration;
     }
 
     @Override

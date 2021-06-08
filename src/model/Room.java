@@ -11,6 +11,7 @@ public class Room implements IRoom{
         this.enumeration = enumeration;
     }
 
+
     @Override
     public String getRoomNumber() {
         return roomNumber;

@@ -50,4 +50,19 @@ public class ReservationService {
         return  emptyRooms;
 
     }
+
+    //TODO - Check what should be returned here (i.e. customer name + dates)
+    public Collection<Reservation> getCustomerReservation(Customer customer){
+        Collection<Reservation> customerReservationList = new ArrayList<>();
+        for (Reservation customerReservation : reservationArrayList){
+            if (customerReservation.customer == customer){
+                customerReservationList.add(customerReservation);
+            }
+        }
+        return customerReservationList;
+    }
+
+    public void printAllReservation(){
+        System.out.println(reservationArrayList);
+    }
 }

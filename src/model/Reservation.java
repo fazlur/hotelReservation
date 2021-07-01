@@ -3,10 +3,10 @@ package model;
 import java.util.Date;
 
 public class Reservation {
-    public Customer customer;
-    public IRoom room;
-    public Date checkInDate;
-    public Date checkOutDate;
+    private final Customer customer;
+    private final IRoom room;
+    private final Date checkInDate;
+    private Date checkOutDate;
 
     public Reservation(Customer customer, IRoom room, Date checkInDate, Date checkOutDate) {
         this.customer = customer;
@@ -29,6 +29,15 @@ public class Reservation {
 
     public Date getCheckOutDate() {
         return checkOutDate;
+    }
+
+    public void updateCheckOut(Date newDate) {
+        this.checkOutDate = newDate;
+    }
+
+    public boolean isChronological(Date checkInDate, Date checkOutDate) {
+        return getCheckInDate().compareTo(checkOutDate) > 0 ||
+                getCheckOutDate().compareTo(checkInDate) < 1;
     }
 
     @Override

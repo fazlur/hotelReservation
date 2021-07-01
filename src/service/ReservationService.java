@@ -8,10 +8,15 @@ import model.Room;
 
 import java.util.*;
 
-public class ReservationService {
-    Map<String, Room> mapOfRooms = new HashMap<>();
-    ArrayList<Room> roomArrayList = new ArrayList<>();
-    ArrayList<Reservation> reservationArrayList = new ArrayList<>();
+public class ReservationService { // Definition
+    // State
+    private Map<String, Room> mapOfRooms = new HashMap<>();
+    private ArrayList<IRoom> roomArrayList = new ArrayList<>();
+    private ArrayList<Reservation> reservationArrayList = new ArrayList<>();
+
+    private ReservationService() {
+        super();
+    }
 
     //Making a static reference - making ReservationService a singleton
     private static ReservationService reservationService;
@@ -41,8 +46,7 @@ public class ReservationService {
     public Collection<IRoom> findRooms(Date checkInDate, Date checkOutDate){
         Collection<IRoom> emptyRooms = new ArrayList<>();
         for (Reservation empty : reservationArrayList){
-            if (empty.getCheckInDate().compareTo(checkOutDate) > 0 ||
-                    empty.getCheckOutDate().compareTo(checkInDate ) < 1 ){
+            if (empty.isChronological(checkInDate, checkOutDate)){
                 emptyRooms.add(empty.getRoom());
 
             }
@@ -55,7 +59,7 @@ public class ReservationService {
     public Collection<Reservation> getCustomerReservation(Customer customer){
         Collection<Reservation> customerReservationList = new ArrayList<>();
         for (Reservation customerReservation : reservationArrayList){
-            if (customerReservation.customer == customer){
+            if (customerReservation.getCustomer() == customer){
                 customerReservationList.add(customerReservation);
             }
         }
@@ -64,5 +68,9 @@ public class ReservationService {
 
     public void printAllReservation(){
         System.out.println(reservationArrayList);
+    }
+
+    public Collection<IRoom> getAllRooms() {
+        return roomArrayList;
     }
 }

@@ -2,11 +2,9 @@ package api;
 
 import model.Customer;
 import model.IRoom;
-import model.Room;
 import service.CustomerService;
 import service.ReservationService;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -16,6 +14,7 @@ public class AdminResource {
     ReservationService room = ReservationService.getInstance();
 
     private AdminResource(){
+        super();
     }
 
     public static AdminResource getInstance(){
@@ -29,15 +28,13 @@ public class AdminResource {
         return customer.getCustomer(email);
     }
 
-    public void addRoom(List<IRoom> rooms){
-        for (IRoom i : rooms){
-            room.addRoom(i);
-        }
+    public void addRoom(List<IRoom> rooms) {
+        rooms.forEach(room::addRoom); // Troca de mensagem
     }
 
     //TODO - Change as this is not returning nothing, to see how to get this from ReservationService
     public Collection<IRoom> getAllRooms(){
-        return null;
+        return room.getAllRooms();
     }
 
     public Collection<Customer> getAllCustomers(){

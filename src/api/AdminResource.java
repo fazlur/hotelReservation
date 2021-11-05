@@ -2,6 +2,7 @@ package api;
 
 import model.Customer;
 import model.IRoom;
+import model.Room;
 import service.CustomerService;
 import service.ReservationService;
 
@@ -28,7 +29,7 @@ public class AdminResource {
         return customer.getCustomer(email);
     }
 
-    public void addRoom(List<IRoom> rooms) {
+    public void addRoom(List<Room> rooms) {
         rooms.forEach(room::addRoom); // Troca de mensagem
     }
 

@@ -18,7 +18,7 @@ public class Room implements IRoom{
     }
 
     @Override
-    public Double getRoomDouble() {
+    public Double getRoomPrice() {
         return Double.valueOf(0);
     }
 
@@ -32,12 +32,13 @@ public class Room implements IRoom{
         return false;
     }
 
+    //TODO - Cleanup print
     @Override
     public String toString() {
         return "Room{" +
-                "roomNumber='" + roomNumber + '\'' +
-                ", price=" + price +
-                ", enumeration=" + enumeration +
+                "roomNumber='" + roomNumber + "\n" +
+                "price=" + price + "\n" +
+                "enumeration=" + enumeration + "\n" +
                 '}';
     }
 }

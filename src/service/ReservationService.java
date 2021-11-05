@@ -1,14 +1,13 @@
 package service;
 
 
-import model.Customer;
-import model.IRoom;
-import model.Reservation;
-import model.Room;
+import model.*;
 
 import java.util.*;
 
 public class ReservationService { // Definition
+    Scanner scanner = new Scanner(System.in);
+
     // State
     private Map<String, Room> mapOfRooms = new HashMap<>();
     private ArrayList<IRoom> roomArrayList = new ArrayList<>();
@@ -27,10 +26,10 @@ public class ReservationService { // Definition
         return reservationService;
     }
 
-    public void addRoom(IRoom room){
-        Room newRoom = (Room) room;
-        roomArrayList.add(newRoom);
-        mapOfRooms.put(room.getRoomNumber(),newRoom);
+    public void addRoom(Room room){
+
+        roomArrayList.add(room);
+        mapOfRooms.put(room.getRoomNumber(),room);
     }
 
     public IRoom getARoom(String roomId){
@@ -71,6 +70,7 @@ public class ReservationService { // Definition
     }
 
     public Collection<IRoom> getAllRooms() {
+
         return roomArrayList;
     }
 }

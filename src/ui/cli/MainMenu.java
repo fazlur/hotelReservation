@@ -3,14 +3,14 @@ package ui.cli;
 import java.util.Scanner;
 
 public class MainMenu {
-    Scanner scanner = new Scanner(System.in);
-    String topAndBottom = "-------------------------------------------------";
+    static Scanner scanner = new Scanner(System.in);
+    static String topAndBottom = "-------------------------------------------------";
 
     public static void main(String[] args) {
         new MainMenu().menu();
     }
 
-    public void menu(){
+    public static void menu(){
         boolean run = true;
 
         while (run) {
@@ -35,7 +35,7 @@ public class MainMenu {
                     System.out.println("Method to create account");
                     break;
                 case "4":
-                    System.out.println("Call admin menu");
+                    AdminMenu.menu();
                 case "5":
                     run = false;
                     break;

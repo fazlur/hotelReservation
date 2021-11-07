@@ -4,6 +4,7 @@ import model.Room;
 import model.RoomType;
 import service.ReservationService;
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class AdminMenu {
@@ -30,26 +31,39 @@ public class AdminMenu {
             String userInput = scanner.nextLine();
 
             switch (userInput){
-                case "1":
-                    System.out.println("Call method to show all customers");
+                case "1": // Show all customers
+                    //System.out.println("Call method to show all customers");
+                    System.out.println(MainMenu.customerService.getAllCustomers());
                     break;
-                case "2":
-                    System.out.println("Call method to show all rooms");
+                case "2": // Show all rooms
                     System.out.println(roomService.getAllRooms());
-                    //roomService.getAllRooms();
                     break;
-                case "3":
+                case "3": // Show all reservations
                     System.out.println("Call method to show all reservations");
                     break;
-                case "4":
+                case "4": // Add room
                     System.out.println("Room Number:");
                     String roomNumber = scanner.nextLine();
                     System.out.println("Room price:");
                     Double price = Double.valueOf(scanner.nextLine());
-                    Room newRoom = new Room(roomNumber,price, RoomType.SINGLE);
+                    RoomType roomType;
+                    while(true){
+                        System.out.println("Is this room 1.Single or 2.Double");
+                        String roomSize = scanner.nextLine();
+                        if (roomSize.equals("1")){
+                            roomType = RoomType.SINGLE;
+                            break;
+                        }else if(roomSize.equals("2")){
+                            roomType = RoomType.DOUBLE;
+                            break;
+                        }else{
+                            System.out.println("Please choose 1 or 2");
+                        }
+                    }
+                    Room newRoom = new Room(roomNumber,price, roomType);
                     roomService.addRoom(newRoom);
                     break;
-                case "5":
+                case "5": // Back to main menu
                     MainMenu.menu();
                 default:
                     System.out.println("Choice must be between 1 and 5");

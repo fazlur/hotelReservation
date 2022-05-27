@@ -4,7 +4,6 @@ import model.Room;
 import model.RoomType;
 import service.ReservationService;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class AdminMenu {
@@ -65,6 +64,8 @@ public class AdminMenu {
                     break;
                 case "5": // Back to main menu
                     MainMenu.menu();
+                    run = false;
+                    break;
                 default:
                     System.out.println("Choice must be between 1 and 5");
 

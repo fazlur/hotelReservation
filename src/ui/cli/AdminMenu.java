@@ -1,13 +1,16 @@
 package ui.cli;
 
+import api.AdminResource;
 import model.Room;
 import model.RoomType;
 import service.ReservationService;
+import service.CustomerService;
 
 import java.util.Scanner;
 
 public class AdminMenu {
     static ReservationService roomService = ReservationService.getInstance();
+    static AdminResource adminResource = AdminResource.getInstance();
     static Scanner scanner = new Scanner(System.in);
     static String topAndBottom = "-------------------------------------------------";
 
@@ -32,10 +35,10 @@ public class AdminMenu {
             switch (userInput){
                 case "1": // Show all customers
                     //System.out.println("Call method to show all customers");
-                    System.out.println(MainMenu.customerService.getAllCustomers());
+                    System.out.println(adminResource.getAllCustomers());
                     break;
                 case "2": // Show all rooms
-                    System.out.println(roomService.getAllRooms());
+                    System.out.println(adminResource.getAllRooms());
                     break;
                 case "3": // Show all reservations
                     System.out.println("Call method to show all reservations");
@@ -59,8 +62,9 @@ public class AdminMenu {
                             System.out.println("Please choose 1 or 2");
                         }
                     }
+                    //TODO - review why in admin resource it cannot take this
                     Room newRoom = new Room(roomNumber,price, roomType);
-                    roomService.addRoom(newRoom);
+                    adminResource.addRoom(newRoom);
                     break;
                 case "5": // Back to main menu
                     MainMenu.menu();

@@ -1,17 +1,17 @@
 package service;
 
 import model.Customer;
+import model.IRoom;
+import model.Room;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class CustomerService {
 
     ArrayList<Customer> customerArrayList = new ArrayList<>();
     Map<String, Customer> mapOfCustomers = new HashMap<>();
     private static CustomerService customerService;
+    ReservationService room = ReservationService.getInstance();
 
     private CustomerService(){
     }
@@ -41,5 +41,24 @@ public class CustomerService {
 
     public Collection<Customer> getAllCustomers(){
         return customerArrayList;
+    }
+
+    //Communication with ReservationService
+    //public void addRoom(List<Room> rooms)
+    public void addRoom(Room rooms) {
+        //rooms.forEach(room::addRoom); // Troca de mensagem
+        room.addRoom(rooms);
+    }
+
+    //TODO - Change as this is not returning anything, to see how to get this from ReservationService
+    //public Collection<IRoom> getAllRooms()
+    public Collection<IRoom> getAllRooms(){
+        return room.getAllRooms();
+    }
+
+
+
+    public void displayAllReservations(){
+        room.printAllReservation();
     }
 }

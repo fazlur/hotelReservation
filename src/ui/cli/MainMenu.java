@@ -2,6 +2,7 @@ package ui.cli;
 
 import service.CustomerService;
 
+import java.util.Date;
 import java.util.Scanner;
 
 public class MainMenu {
@@ -29,7 +30,24 @@ public class MainMenu {
 
             switch (userInput) {
                 case "1": // Find and reserve a room
-                    System.out.println("Call method to reserve room");
+                    //System.out.println("Call method to reserve room");
+                    System.out.println("Enter CheckIn date mm/dd/yyyy example 30/05/2022:");
+                    String checkInDate = scanner.nextLine();
+                    System.out.println("Enter CheckOut date mm/dd/yyyy example 02/06/2022:");
+                    String checkOutDate = scanner.nextLine();
+                    System.out.println(customerService.getAllRooms());
+                    System.out.println("Would you like to book a room? y/n");
+                    String bookRoom = scanner.nextLine();
+                    if (bookRoom.equals("y")){
+                        System.out.println("Do you have an account with us? y/n");
+                        String hasAccount = scanner.nextLine();
+                        if (hasAccount.equals("y")){
+                            System.out.println("Enter your Email format: joe@mail.com");
+                            String customerEmail = scanner.nextLine();
+                            System.out.println(customerService.getCustomer(customerEmail));
+                            customerService.toString();
+                        }
+                    }
                     break;
                 case "2": // See my reservation
                     System.out.println("Call method to see reservation");

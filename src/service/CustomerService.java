@@ -50,8 +50,6 @@ public class CustomerService {
         room.addRoom(rooms);
     }
 
-    //TODO - Change as this is not returning anything, to see how to get this from ReservationService
-    //public Collection<IRoom> getAllRooms()
     public Collection<IRoom> getAllRooms(){
         return room.getAllRooms();
     }

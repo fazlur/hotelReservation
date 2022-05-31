@@ -13,33 +13,36 @@ public class CustomerService {
     private static CustomerService customerService;
     ReservationService room = ReservationService.getInstance();
 
-    private CustomerService(){
+    private CustomerService() {
     }
+
     /*
         Making customerService a singleton
         Note that the variable customerService is made static so it can
         only be instantiated from this class
      */
-    public static CustomerService getInstance(){
-        if(customerService == null){
+    public static CustomerService getInstance() {
+        if (customerService == null) {
             customerService = new CustomerService();
         }
         return customerService;
     }
 
-    public void addCustomer(String email, String firstName, String lastName){
+    public void addCustomer(String email, String firstName, String lastName) {
         Customer customer = new Customer(firstName, lastName, email);
         customerArrayList.add(customer);
     }
 
-    public Customer getCustomer(String customerEmail){
-        for (Customer c : customerArrayList  ) {
+    //Creating hashmap where customer email is key for customer details
+    public Customer getCustomer(String customerEmail) {
+
+        for (Customer c : customerArrayList) {
             mapOfCustomers.put(c.getEmail(), c);
         }
         return mapOfCustomers.get(customerEmail);
     }
 
-    public Collection<Customer> getAllCustomers(){
+    public Collection<Customer> getAllCustomers() {
         return customerArrayList;
     }
 
@@ -50,13 +53,12 @@ public class CustomerService {
         room.addRoom(rooms);
     }
 
-    public Collection<IRoom> getAllRooms(){
+    public Collection<IRoom> getAllRooms() {
         return room.getAllRooms();
     }
 
 
-
-    public void displayAllReservations(){
+    public void displayAllReservations() {
         room.printAllReservation();
     }
 }
